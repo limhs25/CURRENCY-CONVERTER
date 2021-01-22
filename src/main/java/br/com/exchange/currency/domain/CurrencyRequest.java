@@ -18,22 +18,24 @@ public class CurrencyRequest {
 
     @JsonProperty("id_user")
     @NotNull(message = "id_user cannot be null!")
-    @Min(value = 1 ,message = "id_user invalid!")
     private Long idUser;
 
     @JsonProperty("origin_currency")
-    @EnumNamePattern(regexp = "BRL|USD|EUR|JPY",message = "origin_currency invalid!")
+    @EnumNamePattern(anyOf = {BaseCurrencyEnum.BRL,BaseCurrencyEnum.EUR,BaseCurrencyEnum.USD,BaseCurrencyEnum.JPY},
+            message = "origin_currency invalid!")
     private BaseCurrencyEnum originCurrency;
 
     @JsonProperty("origin_value")
     @NotNull(message = "origin_value invalid!")
+    @Min(value = 1,message = "the minimum value of origin_value must be at least 1")
     private BigDecimal originValue;
 
     @JsonProperty("target_currency")
-    @EnumNamePattern(regexp = "BRL|USD|EUR|JPY",message = "target_currency invalid!")
+    @EnumNamePattern(anyOf = {BaseCurrencyEnum.BRL,BaseCurrencyEnum.EUR,BaseCurrencyEnum.USD,BaseCurrencyEnum.JPY}, message = "target_currency invalid!")
     private BaseCurrencyEnum targetCurrency;
 
     @JsonProperty("target_value")
     @NotNull(message = "target_value invalid!")
+    @Min(value = 1,message = "the minimum value of target_value must be at least 1")
     private BigDecimal targetValue;
 }

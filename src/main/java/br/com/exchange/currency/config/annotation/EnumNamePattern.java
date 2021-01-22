@@ -1,5 +1,7 @@
 package br.com.exchange.currency.config.annotation;
 
+import br.com.exchange.currency.config.enums.BaseCurrencyEnum;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -14,8 +16,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Constraint(validatedBy = EnumNamePatternValidator.class)
 public @interface EnumNamePattern {
-    String regexp();
-    String message() default "must match \"{regexp}\"";
+    BaseCurrencyEnum[] anyOf();
+    String message() default "must matchof {anyOf}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
