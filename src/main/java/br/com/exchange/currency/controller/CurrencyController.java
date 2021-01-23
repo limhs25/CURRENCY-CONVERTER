@@ -23,24 +23,24 @@ public class CurrencyController {
 
     @PostMapping("/conveter")
     @ApiOperation(value = "Converter Currency.")
-    @ApiResponses(value ={
-            @ApiResponse(code = 200,message = "Currency Convetins Success!"),
-            @ApiResponse(code = 400,message = "BadRequest"),
-            @ApiResponse(code = 500,message = "Internal Server Error")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Currency Convetins Success!"),
+            @ApiResponse(code = 400, message = "BadRequest"),
+            @ApiResponse(code = 500, message = "Internal Server Error")
     })
-    public ResponseEntity<CurrencyResponse> converterCurrency(@Valid @RequestBody CurrencyRequest currencyRequest){
-        CurrencyResponse response =  currencyService.registerCurrencyConverter(currencyRequest);
+    public ResponseEntity<CurrencyResponse> converterCurrency(@Valid @RequestBody CurrencyRequest currencyRequest) {
+        CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/converters/{id_user}")
     @ApiOperation(value = "Get all Converter Currency by user id.")
-    @ApiResponses(value ={
-            @ApiResponse(code = 200,message = "Currency Convetins Success!"),
-            @ApiResponse(code = 400,message = "BadRequest any argument is wrong!"),
-            @ApiResponse(code = 500,message = "Internal Server Error!")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Currency Convetins Success!"),
+            @ApiResponse(code = 400, message = "BadRequest any argument is wrong!"),
+            @ApiResponse(code = 500, message = "Internal Server Error!")
     })
-    public ResponseEntity<List<CurrencyResponse>> getCurrencyConvertionsByIdUser(@PathVariable(name = "id_user") Long idUser){
+    public ResponseEntity<List<CurrencyResponse>> getCurrencyConvertionsByIdUser(@PathVariable(name = "id_user") Long idUser) {
         List<CurrencyResponse> response = currencyService.getCurrencyConvertionsByIdUser(idUser);
         return ResponseEntity.ok(response);
     }

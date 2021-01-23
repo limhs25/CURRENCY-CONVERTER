@@ -2,11 +2,8 @@ package br.com.exchange.currency.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -29,5 +26,6 @@ public class CurrencyResponse {
     @JsonProperty("target_value")
     private BigDecimal targetValue;
     @JsonProperty("date_time_convetion")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTimeConvetion;
 }

@@ -33,9 +33,4 @@ public class CurrencyRequest {
     @JsonProperty("target_currency")
     @EnumNamePattern(anyOf = {BaseCurrencyEnum.BRL,BaseCurrencyEnum.EUR,BaseCurrencyEnum.USD,BaseCurrencyEnum.JPY}, message = "target_currency invalid!")
     private BaseCurrencyEnum targetCurrency;
-
-    @JsonProperty("target_value")
-    @NotNull(message = "target_value invalid!")
-    @Min(value = 1,message = "the minimum value of target_value must be at least 1")
-    private BigDecimal targetValue;
 }

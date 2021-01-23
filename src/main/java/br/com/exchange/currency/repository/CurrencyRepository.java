@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CurrencyRepository extends JpaRepository<CurrencyConverterEntity, Long> {
-     List<CurrencyConverterEntity> findByIdUser(String idUser);
+     List<CurrencyConverterEntity> findByIdUser(Long idUser);
 }

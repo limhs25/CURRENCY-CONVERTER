@@ -7,6 +7,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.stream.Collectors;
@@ -26,6 +28,11 @@ public class CustomRestExceptionHandler {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorMessage resourceMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         return ErrorMessage.builder().statusCode(HttpStatus.BAD_REQUEST.value()).message(ex.getFieldError().getDefaultMessage()).build();
+    }
+    @ExceptionHandler({HttpServerErrorException.class })
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessage interceptorHttpServerErrorException(HttpClientErrorException ex) {
+        return ErrorMessage.builder().statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value()).message("Internal Server Error").build();
     }
 }
 

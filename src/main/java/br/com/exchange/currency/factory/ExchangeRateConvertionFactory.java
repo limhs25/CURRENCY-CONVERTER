@@ -5,5 +5,5 @@ import br.com.exchange.currency.integration.exchangerate.contract.ExchangeRateRe
 import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
 
 public interface ExchangeRateConvertionFactory {
-    CurrencyConverterEntity getCurrencyConveterEntity(CurrencyRequest currencyRequest, ExchangeRateResponse exchangeRateByBase) throws Exception;
+    CurrencyConverterEntity getCurrencyConveterEntity(CurrencyRequest currencyRequest, ExchangeRateResponse exchangeRateByBase);
 }
