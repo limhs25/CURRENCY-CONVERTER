@@ -25,35 +25,13 @@ public class ExchangeRateConvertionFactoryImpl implements ExchangeRateConvertion
                 return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getBrl());
 
             case USD:
-                return CurrencyConverterEntity.builder()
-                        .idUser(currencyRequest.getIdUser())
-                        .originCurrency(currencyRequest.getOriginCurrency())
-                        .originValue(currencyRequest.getOriginValue())
-                        .targetCurrency(currencyRequest.getTargetCurrency())
-                        .targetValue(getCurrencyValueCalculated(currencyRequest.getOriginValue(), rates.getUsd()))
-                        .conversionRate(rates.getUsd())
-                        .dateTimeConvetion(LocalDateTime.now())
-                        .build();
+                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getUsd());
+
             case EUR:
-                return CurrencyConverterEntity.builder()
-                        .idUser(currencyRequest.getIdUser())
-                        .originCurrency(currencyRequest.getOriginCurrency())
-                        .originValue(currencyRequest.getOriginValue())
-                        .targetCurrency(currencyRequest.getTargetCurrency())
-                        .targetValue(getCurrencyValueCalculated(currencyRequest.getOriginValue(), rates.getEur()))
-                        .conversionRate(rates.getEur())
-                        .dateTimeConvetion(LocalDateTime.now())
-                        .build();
+                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getEur());
+
             case JPY:
-                return CurrencyConverterEntity.builder()
-                        .idUser(currencyRequest.getIdUser())
-                        .originCurrency(currencyRequest.getOriginCurrency())
-                        .originValue(currencyRequest.getOriginValue())
-                        .targetCurrency(currencyRequest.getTargetCurrency())
-                        .targetValue(getCurrencyValueCalculated(currencyRequest.getOriginValue(), rates.getJpy()))
-                        .conversionRate(rates.getJpy())
-                        .dateTimeConvetion(LocalDateTime.now())
-                        .build();
+                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getJpy());
             default:
                 throw new IllegalArgumentException("");
         }
