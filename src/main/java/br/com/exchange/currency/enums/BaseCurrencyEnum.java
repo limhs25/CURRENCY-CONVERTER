@@ -1,4 +1,4 @@
-package br.com.exchange.currency.config.enums;
+package br.com.exchange.currency.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package br.com.exchange.currency.domain;
 
 import br.com.exchange.currency.config.annotation.EnumNamePattern;
-import br.com.exchange.currency.config.enums.BaseCurrencyEnum;
+import br.com.exchange.currency.enums.BaseCurrencyEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 

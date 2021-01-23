@@ -1,11 +1,9 @@
 package br.com.exchange.currency.repository.entity;
 
-import br.com.exchange.currency.config.enums.BaseCurrencyEnum;
+import br.com.exchange.currency.enums.BaseCurrencyEnum;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -52,4 +50,5 @@ public class CurrencyConverterEntity implements Serializable {
 
     @Column(name = "date_time_convetion")
     private LocalDateTime dateTimeConvetion;
+
 }

@@ -1,8 +1,8 @@
 package br.com.exchange.currency.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,7 +25,9 @@ public class CurrencyResponse {
     private String targetCurrency;
     @JsonProperty("target_value")
     private BigDecimal targetValue;
+    @JsonProperty("conversion_rate")
+    private BigDecimal conversionRate;
     @JsonProperty("date_time_convetion")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeConvetion;
 }

@@ -4,16 +4,12 @@ import br.com.exchange.currency.domain.CurrencyRequest;
 import br.com.exchange.currency.integration.exchangerate.contract.ExchangeRateResponse;
 import br.com.exchange.currency.mapper.CurrencyConverterEntityMapper;
 import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDateTime;
-
 @Component
 public class ExchangeRateConvertionFactoryImpl implements ExchangeRateConvertionFactory {
+
     @Autowired
     private CurrencyConverterEntityMapper currencyConverterEntityMapper;
 
@@ -32,12 +28,9 @@ public class ExchangeRateConvertionFactoryImpl implements ExchangeRateConvertion
 
             case JPY:
                 return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getJpy());
-            default:
-                throw new IllegalArgumentException("");
-        }
-    }
 
-    private BigDecimal getCurrencyValueCalculated(BigDecimal originValue, BigDecimal rate) {
-        return originValue.multiply(rate).setScale(2, RoundingMode.HALF_UP);
+            default:
+                throw new IllegalArgumentException("Target Currency not supported");
+        }
     }
 }

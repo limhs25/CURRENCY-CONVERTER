@@ -1,6 +1,6 @@
 package br.com.exchange.currency.config.annotation;
 
-import br.com.exchange.currency.config.enums.BaseCurrencyEnum;
+import br.com.exchange.currency.enums.BaseCurrencyEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintValidator;

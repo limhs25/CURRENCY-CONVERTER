@@ -3,7 +3,6 @@ package br.com.exchange.currency.controller;
 import br.com.exchange.currency.domain.CurrencyRequest;
 import br.com.exchange.currency.domain.CurrencyResponse;
 import br.com.exchange.currency.service.CurrencyService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -40,7 +39,7 @@ public class CurrencyController {
             @ApiResponse(code = 400, message = "BadRequest any argument is wrong!"),
             @ApiResponse(code = 500, message = "Internal Server Error!")
     })
-    public ResponseEntity<List<CurrencyResponse>> getCurrencyConvertionsByIdUser(@PathVariable(name = "id_user") Long idUser) {
+    public ResponseEntity<List<CurrencyResponse>> getCurrencyConvertionsByIdUser(@Valid @PathVariable(name = "id_user") Long idUser) {
         List<CurrencyResponse> response = currencyService.getCurrencyConvertionsByIdUser(idUser);
         return ResponseEntity.ok(response);
     }
