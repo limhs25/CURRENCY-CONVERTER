@@ -19,4 +19,5 @@ public interface CurrencyConverterEntityMapper {
     default BigDecimal getCurrencyValueCalculated(BigDecimal originValue, BigDecimal rate) {
         return originValue.multiply(rate).setScale(2, RoundingMode.HALF_UP);
     }
+
 }

@@ -5,9 +5,9 @@ import br.com.exchange.currency.integration.exchangerate.contract.ExchangeRateRe
 import br.com.exchange.currency.mapper.CurrencyConverterEntityMapper;
 import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ExchangeRateConvertionFactoryImpl implements ExchangeRateConvertionFactory {
 
     @Autowired

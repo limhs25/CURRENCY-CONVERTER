@@ -6,5 +6,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum BaseCurrencyEnum {
-    BRL,USD,EUR,JPY;
+    BRL,USD,EUR,JPY,UNKNOWN;
 }
