@@ -27,7 +27,7 @@ public class CustomRestExceptionHandler {
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorMessage resourceMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
-        return ErrorMessage.builder().statusCode(HttpStatus.BAD_REQUEST.value()).message(ex.getFieldError().getDefaultMessage()).build();
+        return ErrorMessage.builder().statusCode(HttpStatus.BAD_REQUEST.value()).message(ex.getMessage()).build();
     }
     @ExceptionHandler({HttpServerErrorException.class })
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
