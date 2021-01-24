@@ -21,13 +21,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.mapstruct.factory.Mappers.getMapper;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CurrencyServiceTest {
 
 
@@ -69,7 +70,7 @@ public class CurrencyServiceTest {
         assertNotNull(response);
         assertThat(response)
                 .usingRecursiveComparison()
-                    .isEqualTo(currencyResponse);
+                .isEqualTo(currencyResponse);
 
     }
     @Test
@@ -109,6 +110,174 @@ public class CurrencyServiceTest {
                 .isEqualTo(currencyResponse);
     }
 
+    @Test
+    public void shouldCreateCurrecyConvetionFromUsdBaseToBrlAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_USD_TO_BRL);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_USD);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_USD_TO_BRL);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+    @Test
+    public void shouldCreateCurrecyConvetionFromUsdBaseToEurAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_USD_TO_EUR);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_USD);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_USD_TO_EUR);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+    @Test
+    public void shouldCreateCurrecyConvetionFromUsdBaseToJpyAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_USD_TO_JPY);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_USD);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_USD_TO_JPY);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromEurBaseToBrlAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_EUR_TO_BRL);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_EUR);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_EUR_TO_BRL);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromEurBaseToUsdAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_EUR_TO_USD);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_EUR);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_EUR_TO_USD);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromEurBaseToJpyAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_EUR_TO_JPY);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_EUR);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_EUR_TO_JPY);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromJpyBaseToBrlAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_JPY_TO_BRL);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_JPY);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_JPY_TO_BRL);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromJpyBaseToUsdAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_JPY_TO_USD);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_JPY);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_JPY_TO_USD);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
+
+    @Test
+    public void shouldCreateCurrecyConvetionFromJpyBaseToEurAndReturnTheConversion() {
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_JPY_TO_EUR);
+        ExchangeRateResponse exchangeRateResponse = Fixture.from(ExchangeRateResponse.class).gimme(ExchangeRateTemplate.VALID_EXCHANGE_RATE_BASE_JPY);
+        CurrencyConverterEntity currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class).gimme(CurrencyConverterEntityTemplete.VALID_ENTITY_JPY_TO_EUR);
+        CurrencyResponse currencyResponse = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(exchangeRateService.getExchangeRateByBase(Mockito.anyString())).thenReturn(exchangeRateResponse);
+        Mockito.when(currencyRepository.saveAndFlush(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final CurrencyResponse response = currencyService.registerCurrencyConverter(currencyRequest);
+
+        assertNotNull(response);
+        assertThat(response)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponse);
+
+    }
 
 
 }
