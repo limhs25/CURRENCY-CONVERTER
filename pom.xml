@@ -173,6 +173,7 @@
                   <excludes>
                       <exclude>**/*CurrencyConverterApplication.*</exclude>
                       <exclude>**/config/**</exclude>
+                      <exclude>**/**/entity/**</exclude>
                       <exclude>**/domain/**</exclude>
                   </excludes>
               </configuration>

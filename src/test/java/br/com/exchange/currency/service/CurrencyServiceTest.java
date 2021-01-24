@@ -14,6 +14,7 @@ import br.com.exchange.currency.templates.CurrencyRequestTemplate;
 import br.com.exchange.currency.templates.ExchangeRateTemplate;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertNotNull;
@@ -278,5 +282,31 @@ public class CurrencyServiceTest {
 
     }
 
+    @Test
+    public void shouldGetListOfCurrencyConvertionsByIdUser(){
+        List<CurrencyConverterEntity> currencyConverterEntity = Fixture.from(CurrencyConverterEntity.class)
+                .gimme(2,CurrencyConverterEntityTemplete.VALID_ENTITY_JPY_TO_EUR);
+        final List<CurrencyResponse> currencyResponses = correncyResponseMapper.toListCurrencyResponse(currencyConverterEntity);
+
+        Mockito.when(currencyRepository.findByIdUser(Mockito.any())).thenReturn(currencyConverterEntity);
+
+        final List<CurrencyResponse> currencyConvertionsByIdUser = currencyService.getCurrencyConvertionsByIdUser(1L);
+
+        assertNotNull(currencyConvertionsByIdUser);
+        assertThat(currencyConvertionsByIdUser)
+                .usingRecursiveComparison()
+                .isEqualTo(currencyResponses);
+    }
+    @Test
+    public void shouldGetEmptyListOfCurrencyConvertionsByIdUserInvalid(){
+
+        Mockito.when(currencyRepository.findByIdUser(Mockito.any())).thenReturn(new ArrayList<>());
+
+        final List<CurrencyResponse> currencyConvertionsByIdUser = currencyService.getCurrencyConvertionsByIdUser(1L);
+
+        assertNotNull(currencyConvertionsByIdUser);
+        assertThat(currencyConvertionsByIdUser).isEqualTo(new ArrayList<>());
+
+    }
 
 }
