@@ -2,6 +2,7 @@ package br.com.exchange.currency.controller;
 
 import br.com.exchange.currency.WireMockConfig;
 import br.com.exchange.currency.domain.CurrencyRequest;
+import br.com.exchange.currency.enums.BaseCurrencyEnum;
 import br.com.exchange.currency.mapper.CorrencyResponseMapper;
 import br.com.exchange.currency.templates.CurrencyRequestTemplate;
 import br.com.six2six.fixturefactory.Fixture;
@@ -9,6 +10,7 @@ import br.com.six2six.fixturefactory.loader.FixtureFactoryLoader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import feign.FeignException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.NestedServletException;
 
 import static java.nio.charset.Charset.defaultCharset;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -87,6 +90,20 @@ public class CurrencyControllerTest {
                 .andExpect(jsonPath("$.target_currency").value("USD"))
                 .andExpect(jsonPath("$.target_value").value("0.18"))
                 .andExpect(jsonPath("$.conversion_rate").value("0.18"));
+    }
+    @Test(expected = NestedServletException.class)
+    public void shouldThrowNestedServletExceptionBecauseTheBaseIsInvalid() throws Exception{
+        CurrencyRequest currencyRequest = Fixture.from(CurrencyRequest.class).gimme(CurrencyRequestTemplate.VALID_REQUEST_BRL_TO_USD);
+        currencyRequest.setOriginCurrency(BaseCurrencyEnum.UNKNOWN);
+        wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/latest?base=UNKNOWN"))
+                .willReturn(WireMock.aResponse()
+                        .withStatus(HttpStatus.BAD_REQUEST.value())
+                        .withHeader("Content-Type",
+                                "application/json")));
+
+        mockMvc.perform(post("/v1/currency/converter")
+                .content(new ObjectMapper().writeValueAsString(currencyRequest))
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON));
     }
 
     @Test
