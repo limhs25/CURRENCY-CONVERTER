@@ -37,5 +37,5 @@ jobs:
       - name: Build and push
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: currency_converter_production
-        run: heroku plugins:install java && heroku create --no-remote && heroku deploy:jar production/currency-0.0.1-SNAPSHOT.jar --app currency_converter_production
+          HEROKU_APP_NAME: currency-converter-project
+        run: heroku plugins:install java && heroku create --no-remote && heroku deploy:jar production/currency-0.0.1-SNAPSHOT.jar --app currency-converter-project
