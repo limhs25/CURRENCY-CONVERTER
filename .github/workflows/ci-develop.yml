@@ -25,6 +25,8 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build
         run: mvn -B package --file pom.xml
+      - name: Maven Verify
+        run: mvn -B clean verify
       - name: Create build path staging
         run: mkdir staging && cp target/*.jar staging
       - name: Upload math result for job
