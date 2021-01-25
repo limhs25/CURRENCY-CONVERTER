@@ -90,6 +90,18 @@
             <version>0.1.0</version>
         </dependency>
         <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>logbook-logstash</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>2.27.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
@@ -165,19 +177,20 @@
                     <argLine>-Xms512m -Xmx1024m -XX:MaxPermSize=512m ${jacoco.agent.argLine}</argLine>
                 </configuration>
             </plugin>
-          <plugin>
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.6</version>
-              <configuration>
-                  <excludes>
-                      <exclude>**/*CurrencyConverterApplication.*</exclude>
-                      <exclude>**/config/**</exclude>
-                      <exclude>**/enums/**</exclude>
-                      <exclude>**/**/entity/**</exclude>
-                      <exclude>**/domain/**</exclude>
-                  </excludes>
-              </configuration>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*CurrencyConverterApplication.*</exclude>
+                        <exclude>**/config/**</exclude>
+                        <exclude>**/enums/**</exclude>
+                        <exclude>**/**/entity/**</exclude>
+                        <exclude>**/**/contract/**</exclude>
+                        <exclude>**/domain/**</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-unit-test</id>

@@ -20,7 +20,7 @@ public class CurrencyController {
     @Autowired
     private CurrencyService currencyService;
 
-    @PostMapping("/conveter")
+    @PostMapping("/converter")
     @ApiOperation(value = "Converter Currency.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Currency Convetins Success!"),

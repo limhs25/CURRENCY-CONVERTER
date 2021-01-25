@@ -1,5 +1,6 @@
 package br.com.exchange.currency.integration.exchangerate.contract;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class ExchangeRateResponse {
     @JsonProperty("base")
     private String base;
     @JsonProperty("date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Getter
