@@ -19,7 +19,7 @@
         <sonar.projectKey>thukabjj_CURRENCY-CONVERTER</sonar.projectKey>
         <sonar.organization>thukabjj</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <code.coverage.exclusions>**/*CurrencyConverterApplication.*,**/config/**,**/enums/**,**/**/entity/**,**/**/contract/**,**/domain/**</code.coverage.exclusions>
+        <code.coverage.exclusions>**/logback.**,**/*CurrencyConverterApplication.*,**/config/**,**/enums/**,**/**/entity/**,**/**/contract/**,**/domain/**</code.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
