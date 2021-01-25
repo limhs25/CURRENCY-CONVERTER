@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+currency,br.com.exchange.currency.controller,CurrencyController,0,19,0,0,0,5,0,3,0,3
+currency,br.com.exchange.currency.mapper,CorrencyResponseMapperImpl,0,89,0,10,0,22,0,8,0,3
+currency,br.com.exchange.currency.mapper,CurrencyConverterEntityMapper,0,22,0,6,0,4,0,4,0,1
+currency,br.com.exchange.currency.mapper,CurrencyConverterEntityMapperImpl,0,53,0,8,0,14,0,6,0,2
+currency,br.com.exchange.currency.service,CurrencyService,0,41,0,0,0,9,0,3,0,3
+currency,br.com.exchange.currency.integration.exchangerate.service,ExchangeRateService,0,10,0,0,0,2,0,2,0,2
+currency,br.com.exchange.currency.factory,ExchangeRateConvertionFactoryImpl,0,45,0,5,0,8,0,6,0,2

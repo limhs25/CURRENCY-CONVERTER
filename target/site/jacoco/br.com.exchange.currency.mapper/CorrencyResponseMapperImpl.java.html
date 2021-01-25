@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CorrencyResponseMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">currency</a> &gt; <a href="index.source.html" class="el_package">br.com.exchange.currency.mapper</a> &gt; <span class="el_source">CorrencyResponseMapperImpl.java</span></div><h1>CorrencyResponseMapperImpl.java</h1><pre class="source lang-java linenums">package br.com.exchange.currency.mapper;
+
+import br.com.exchange.currency.domain.CurrencyResponse;
+import br.com.exchange.currency.domain.CurrencyResponse.CurrencyResponseBuilder;
+import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2021-01-24T23:58:26-0300&quot;,
+    comments = &quot;version: 1.4.1.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)&quot;
+)
+@Component
+<span class="fc" id="L17">public class CorrencyResponseMapperImpl implements CorrencyResponseMapper {</span>
+
+    @Override
+    public CurrencyResponse toCurrencyResponse(CurrencyConverterEntity currencyConverterEntity) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if ( currencyConverterEntity == null ) {</span>
+<span class="fc" id="L22">            return null;</span>
+        }
+
+<span class="fc" id="L25">        CurrencyResponseBuilder currencyResponse = CurrencyResponse.builder();</span>
+
+<span class="fc" id="L27">        currencyResponse.idTransaction( currencyConverterEntity.getIdTransaction() );</span>
+<span class="fc" id="L28">        currencyResponse.idUser( currencyConverterEntity.getIdUser() );</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if ( currencyConverterEntity.getOriginCurrency() != null ) {</span>
+<span class="fc" id="L30">            currencyResponse.originCurrency( currencyConverterEntity.getOriginCurrency().name() );</span>
+        }
+<span class="fc" id="L32">        currencyResponse.originValue( currencyConverterEntity.getOriginValue() );</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if ( currencyConverterEntity.getTargetCurrency() != null ) {</span>
+<span class="fc" id="L34">            currencyResponse.targetCurrency( currencyConverterEntity.getTargetCurrency().name() );</span>
+        }
+<span class="fc" id="L36">        currencyResponse.targetValue( currencyConverterEntity.getTargetValue() );</span>
+<span class="fc" id="L37">        currencyResponse.conversionRate( currencyConverterEntity.getConversionRate() );</span>
+<span class="fc" id="L38">        currencyResponse.dateTimeConvetion( currencyConverterEntity.getDateTimeConvetion() );</span>
+
+<span class="fc" id="L40">        return currencyResponse.build();</span>
+    }
+
+    @Override
+    public List&lt;CurrencyResponse&gt; toListCurrencyResponse(List&lt;CurrencyConverterEntity&gt; currencyConverterEntity) {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if ( currencyConverterEntity == null ) {</span>
+<span class="fc" id="L46">            return null;</span>
+        }
+
+<span class="fc" id="L49">        List&lt;CurrencyResponse&gt; list = new ArrayList&lt;CurrencyResponse&gt;( currencyConverterEntity.size() );</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for ( CurrencyConverterEntity currencyConverterEntity1 : currencyConverterEntity ) {</span>
+<span class="fc" id="L51">            list.add( toCurrencyResponse( currencyConverterEntity1 ) );</span>
+<span class="fc" id="L52">        }</span>
+
+<span class="fc" id="L54">        return list;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
