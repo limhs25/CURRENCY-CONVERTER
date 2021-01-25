@@ -32,5 +32,5 @@ jobs:
       - name: Upload math result for job
         uses: actions/upload-artifact@v1
         with:
-          name: example_github_actions
+          name: currency_converter_develop
           path: staging
