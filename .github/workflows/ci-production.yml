@@ -1,10 +1,10 @@
-name: GitHub-Actions Example-PRD
+name: CI PROD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ develop ]
     
 
 jobs:
@@ -34,14 +34,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v1     
       with:
-        name: currency-converter-project
+        name: currency_converter_production
         path: production
-    - name: Login to Heroku Container registry
-        env: 
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:login
-      - name: Build and push
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: currency-converter-project
-        run: heroku plugins:install java && heroku create --no-remote && heroku deploy:jar staging/currency-0.0.1-SNAPSHOT.jar --app currency-converter-project
