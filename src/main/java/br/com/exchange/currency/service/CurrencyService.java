@@ -33,8 +33,7 @@ public class CurrencyService {
         final ExchangeRateResponse exchangeRateByBase = exchangeRateService.getExchangeRateByBase(origingCurrencyBase);
         final CurrencyConverterEntity currencyConveterEntity = convertionFactory.getCurrencyConveterEntity(currencyRequest, exchangeRateByBase);
         final CurrencyConverterEntity currencyConverterEntity = currencyRepository.saveAndFlush(currencyConveterEntity);
-        final CurrencyResponse response = correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
-        return response;
+        return  correncyResponseMapper.toCurrencyResponse(currencyConverterEntity);
     }
 
     public List<CurrencyResponse> getCurrencyConvertionsByIdUser(Long idUser) {
