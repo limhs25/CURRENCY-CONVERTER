@@ -80,8 +80,6 @@ jobs:
             path: ~/.m2
             key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
             restore-keys: ${{ runner.os }}-m2
-        - name: Build Package
-          run: mvn -B package --file pom.xml
         - name: Maven Clean Package
           run: mvn -B clean package -DskipTests
         - name: Create Prodcution folder and Copy App
@@ -113,7 +111,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Package
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml -DskipTests
       - name: Create build path production
         run: mkdir production && cp target/*.jar production
         
