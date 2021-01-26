@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "currency_exchange")
 public class CurrencyConverterEntity implements Serializable {
 
     @Id
