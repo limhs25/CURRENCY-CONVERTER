@@ -16,9 +16,6 @@
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <sonar.projectKey>thukabjj_CURRENCY-CONVERTER</sonar.projectKey>
-        <sonar.organization>thukabjj</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <code.coverage.exclusions>**/logback.**,**/*CurrencyConverterApplication.*,**/config/**,**/enums/**,**/**/entity/**,**/**/contract/**,**/domain/**</code.coverage.exclusions>
     </properties>
     <dependencies>
@@ -224,18 +221,10 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
-    </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.1.1</version>
-            </plugin>
-        </plugins>
-    </reporting>
 
+        </plugins>
+
+    </build>
     <profiles>
         <profile>
             <id>integration-test</id>
@@ -254,8 +243,22 @@
                                 </goals>
                                 <configuration>
                                     <sources>
-                                        <source>src/integration-test/java</source>
+                                        <source>src/test/java/controller</source>
                                     </sources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-integration-test-resources</id>
+                                <phase>generate-test-resources</phase>
+                                <goals>
+                                    <goal>add-test-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/test/resources</directory>
+                                        </resource>
+                                    </resources>
                                 </configuration>
                             </execution>
                         </executions>
@@ -287,8 +290,8 @@
                 <sonar.sources>.</sonar.sources>
                 <sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
                 <sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
-                <sonar.projectKey>wkrzywiec_NoticeBoard</sonar.projectKey>
-                <sonar.organization>wkrzywiec</sonar.organization>
+                <sonar.projectKey>thukabjj_CURRENCY-CONVERTER</sonar.projectKey>
+                <sonar.organization>thukabjj</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
             </properties>
             <activation>
@@ -313,6 +316,7 @@
             </build>
         </profile>
     </profiles>
+
     <distributionManagement>
 
         <repository>
