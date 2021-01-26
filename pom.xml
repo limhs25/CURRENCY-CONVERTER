@@ -293,7 +293,6 @@
                 <sonar.projectKey>thukabjj_CURRENCY-CONVERTER</sonar.projectKey>
                 <sonar.organization>thukabjj</sonar.organization>
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-<!--                <sonar.login>74638b6b0c10b98a9f7702edb1370563a0a2f628</sonar.login>-->
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
