@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExchangeRateConvertionFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">currency</a> &gt; <a href="index.source.html" class="el_package">br.com.exchange.currency.factory</a> &gt; <span class="el_source">ExchangeRateConvertionFactoryImpl.java</span></div><h1>ExchangeRateConvertionFactoryImpl.java</h1><pre class="source lang-java linenums">package br.com.exchange.currency.factory;
+
+import br.com.exchange.currency.domain.CurrencyRequest;
+import br.com.exchange.currency.integration.exchangerate.contract.ExchangeRateResponse;
+import br.com.exchange.currency.mapper.CurrencyConverterEntityMapper;
+import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+<span class="fc" id="L11">public class ExchangeRateConvertionFactoryImpl implements ExchangeRateConvertionFactory {</span>
+
+    @Autowired
+    private CurrencyConverterEntityMapper currencyConverterEntityMapper;
+
+    @Override
+    public CurrencyConverterEntity getCurrencyConveterEntity(CurrencyRequest currencyRequest, ExchangeRateResponse exchangeRateByBase) {
+<span class="fc" id="L18">        final ExchangeRateResponse.RateResponse rates = exchangeRateByBase.getRates();</span>
+<span class="fc bfc" id="L19" title="All 5 branches covered.">        switch (currencyRequest.getTargetCurrency()) {</span>
+            case BRL:
+<span class="fc" id="L21">                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getBrl());</span>
+
+            case USD:
+<span class="fc" id="L24">                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getUsd());</span>
+
+            case EUR:
+<span class="fc" id="L27">                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getEur());</span>
+
+            case JPY:
+<span class="fc" id="L30">                return currencyConverterEntityMapper.toCurrencyConverterEntity(currencyRequest, rates.getJpy());</span>
+
+            default:
+<span class="fc" id="L33">                throw new IllegalArgumentException(&quot;Target Currency not supported&quot;);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

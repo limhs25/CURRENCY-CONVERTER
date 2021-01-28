@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrencyConverterEntityMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">currency</a> &gt; <a href="index.source.html" class="el_package">br.com.exchange.currency.mapper</a> &gt; <span class="el_source">CurrencyConverterEntityMapperImpl.java</span></div><h1>CurrencyConverterEntityMapperImpl.java</h1><pre class="source lang-java linenums">package br.com.exchange.currency.mapper;
+
+import br.com.exchange.currency.domain.CurrencyRequest;
+import br.com.exchange.currency.repository.entity.CurrencyConverterEntity;
+import br.com.exchange.currency.repository.entity.CurrencyConverterEntity.CurrencyConverterEntityBuilder;
+import java.math.BigDecimal;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2021-01-24T23:58:26-0300&quot;,
+    comments = &quot;version: 1.4.1.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)&quot;
+)
+@Component
+<span class="fc" id="L16">public class CurrencyConverterEntityMapperImpl implements CurrencyConverterEntityMapper {</span>
+
+    @Override
+    public CurrencyConverterEntity toCurrencyConverterEntity(CurrencyRequest currencyRequest, BigDecimal conversionRate) {
+<span class="fc bfc" id="L20" title="All 4 branches covered.">        if ( currencyRequest == null &amp;&amp; conversionRate == null ) {</span>
+<span class="fc" id="L21">            return null;</span>
+        }
+
+<span class="fc" id="L24">        CurrencyConverterEntityBuilder currencyConverterEntity = CurrencyConverterEntity.builder();</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if ( currencyRequest != null ) {</span>
+<span class="fc" id="L27">            currencyConverterEntity.idUser( currencyRequest.getIdUser() );</span>
+<span class="fc" id="L28">            currencyConverterEntity.originCurrency( currencyRequest.getOriginCurrency() );</span>
+<span class="fc" id="L29">            currencyConverterEntity.originValue( currencyRequest.getOriginValue() );</span>
+<span class="fc" id="L30">            currencyConverterEntity.targetCurrency( currencyRequest.getTargetCurrency() );</span>
+        }
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if ( conversionRate != null ) {</span>
+<span class="fc" id="L33">            currencyConverterEntity.conversionRate( conversionRate );</span>
+        }
+<span class="fc" id="L35">        currencyConverterEntity.targetValue( getCurrencyValueCalculated(currencyRequest,conversionRate) );</span>
+<span class="fc" id="L36">        currencyConverterEntity.dateTimeConvetion( java.time.LocalDateTime.now() );</span>
+
+<span class="fc" id="L38">        return currencyConverterEntity.build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
